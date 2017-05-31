@@ -1,9 +1,5 @@
 class WelcomeController < ApplicationController
-  def index
-  end
-  def update
-  end
-  def create
-  end
-  
+	def create
+		@project = Project.all
+	end
 end
