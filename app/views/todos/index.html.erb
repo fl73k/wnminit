@@ -1,0 +1,47 @@
+<script type="text/javascript">
+    function showHide(element_id)
+    {
+        if (document.getElementById(element_id))
+        { 
+            var obj = document.getElementById(element_id); 
+            if (obj.style.display != "block")
+            { 
+                obj.style.display = "block";
+            }
+            else obj.style.display = "none";
+        }
+    }
+</script>
+
+<h1>Задачи</h1>
+<% titles = [] %>
+<% @project.each do |project| %>
+        <h2><%= project.title %></h2>
+	<%titles << [project.title.to_s, project.id]%>
+	<ul>
+                <% project.todos.each do |todo|%>
+                        <li><%= todo.text %></li>
+                <% end %>
+        </ul>
+<% end %>
+
+<input type = "button" value = "+" onclick="showHide('new_todo')">
+<div id = "new_todo" style="display: none;" >
+<h1>Новая задача</h1>
+<h2>Add a todo:</h2>
+<%= form_for :todo, url: todos_path, :html => {:id => "new_todo_form"} do |f| %>
+  <p>
+    <%= f.text_field :text %>
+  </p>
+ 
+  <p>
+  <%= f.select(:project_id, titles) %>
+  </p>
+ 
+  <p>
+  <a href="javascript:void(0)" onclick="showHide('new_todo')">ОТМЕНА</a>
+  <a href="javascript:{}" onclick="document.getElementById('new_todo_form').submit(); return false;">OK</a>
+
+  </p>
+<% end %>
+</div>
