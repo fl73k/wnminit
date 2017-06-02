@@ -4,20 +4,6 @@
       <meta charset="utf-8">
    </head>
    <body>
-      <script type="text/javascript">
-         function showHide(element_id)
-         {
-             if (document.getElementById(element_id))
-             { 
-                 var obj = document.getElementById(element_id); 
-                 if (obj.style.display != "block")
-                 { 
-                     obj.style.display = "block";
-                 }
-                 else obj.style.display = "none";
-             }
-         }
-      </script>
       <h1>Задачи</h1>
       <% titles = [] %>
       <% @project.each do |project| %>
